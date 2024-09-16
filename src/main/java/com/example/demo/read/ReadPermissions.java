@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.Pet;
-import com.example.demo.service.PetStoreService;
+import com.example.demo.service.PetStoreServiceSQL;
 
 @RestController()
 public class ReadPermissions {
 
     @Autowired
-    PetStoreService petStoreService;
+    PetStoreServiceSQL petStoreService;
 
     String managedIdentityRead = "ac401625-8f14-497f-b105-3f49ccb4dee1";
 

@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
 @Service
-public class PetStoreService {
+public class PetStoreServiceSQL {
 
 	public List<Pet> getPets(String managedIdentity){
 		System.out.println("Getting pets with managed identity " + managedIdentity);
