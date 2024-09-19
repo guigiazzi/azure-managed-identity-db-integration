@@ -1,0 +1,15 @@
+spring:
+    sql:
+        init:
+            mode: ALWAYS
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+        open-in-view: false
+        hibernate:
+            ddl-auto: create
+    datasource:
+        azure:
+            passwordless-enabled: true
+        url: jdbc:postgresql://testegiazzi2.postgres.database.azure.com:5432/checklist?sslmode=require
+        #username: guigiazzi_hotmail.com#EXT#@guigiazzihotmail.onmicrosoft.com
+        username: mi-write-credentials
