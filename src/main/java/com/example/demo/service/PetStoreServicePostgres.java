@@ -13,20 +13,19 @@ import com.google.gson.Gson;
 public class PetStoreServicePostgres {
 
     public List<Pet> getPets(String managedIdentity){
-        System.out.println("Getting pets with managed identity " + System.getenv("AZ_POSTGRESQL_AD_NON_ADMIN_USERNAME"));
-
         Properties properties = new Properties();
         try {
             properties.load(DemoApplication.class.getClassLoader().getResourceAsStream("application.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("Getting pets with managed identity " + properties.getProperty("user"));
         
         Connection connection;
         try {
-            System.out.println("Connecting to the database");
+            System.out.println("Noww Connecting to the database");
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
-            System.out.println("Database connection test: " + connection.getCatalog());
 
             PreparedStatement readStatement = connection.prepareStatement("SELECT * FROM PetStore;");
             ResultSet resultSet = readStatement.executeQuery();
@@ -48,15 +47,11 @@ public class PetStoreServicePostgres {
 
         } catch(Exception e){
             e.printStackTrace();
-            // System.out.println("Closing database connection");
-            // connection.close();
             return null;
         }
     }
 
     public String addPet(String managedIdentity, Pet pet){
-		System.out.println("Adding pet " + new Gson().toJson(pet) + " with managed identity " + managedIdentity);
-
         Properties properties = new Properties();
         try {
             properties.load(DemoApplication.class.getClassLoader().getResourceAsStream("application.properties"));
@@ -64,20 +59,21 @@ public class PetStoreServicePostgres {
             e.printStackTrace();
         }
 
+        System.out.println("Adding pet " + new Gson().toJson(pet) + " with managed identity " + properties.getProperty("user"));
+
         Connection connection;
         try {
-            System.out.println("Connecting to the database");
+            System.out.println("Noww Connecting to the database");
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
-            System.out.println("Database connection test: " + connection.getCatalog());
 
             PreparedStatement insertStatement = connection
-                .prepareStatement("INSERT INTO PetStore (petid, petname, pettype, age, price) VALUES (?, ?, ?, ?);");
+                .prepareStatement("INSERT INTO PetStore (petid, petname, pettype, age, price) VALUES (?, ?, ?, ?, ?);");
         
                 insertStatement.setLong(1, Long.parseLong(pet.getId()));
                 insertStatement.setString(2, pet.getName());
                 insertStatement.setString(3, pet.getType());
                 insertStatement.setInt(4, Integer.parseInt(pet.getAge()));
-                insertStatement.setInt(4, Integer.parseInt(pet.getPrice()));
+                insertStatement.setInt(5, Integer.parseInt(pet.getPrice()));
                 insertStatement.executeUpdate();
             
             System.out.println("Inserted successfully");

@@ -41,7 +41,7 @@
 		</dependency>
 
 		<!-- azure sql dependencies -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.azure</groupId>
 			<artifactId>azure-identity</artifactId>
 			<version>1.4.6</version>
@@ -50,7 +50,7 @@
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>10.2.0.jre11</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- postgres dependencies -->
 		<dependency>
