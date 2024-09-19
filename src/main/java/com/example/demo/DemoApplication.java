@@ -5,10 +5,10 @@ import com.example.demo.service.PetStoreServicePostgres;
 
 public class DemoApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
 		PetStoreServicePostgres service = new PetStoreServicePostgres();
 		service.getPets();
-		service.addPet(new Pet("20", "Bob", "Bird", "9", "800"));
+		service.addPet(new Pet("23", "Fred", "Bird", "5", "200"));
 		service.getPets();
 
 	}
