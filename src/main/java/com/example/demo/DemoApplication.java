@@ -1,13 +1,16 @@
 package com.example.demo;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.example.demo.service.Pet;
+import com.example.demo.service.PetStoreServicePostgres;
 
-@SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		PetStoreServicePostgres service = new PetStoreServicePostgres();
+		service.getPets();
+		service.addPet(new Pet("20", "Bob", "Bird", "9", "800"));
+		service.getPets();
+
 	}
 
 }
