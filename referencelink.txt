@@ -1,0 +1,1 @@
+https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/articles/java/spring-framework/deploy-passwordless-spring-database-app.md
