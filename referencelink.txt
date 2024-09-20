@@ -1,1 +1,48 @@
 https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/articles/java/spring-framework/deploy-passwordless-spring-database-app.md
+
+para conectar via pgadmin:
+- pegar um token de acesso do usuário admin: 
+	az account get-access-token --resource-type oss-rdbms --output tsv --query accessToken
+
+-- mi-write-credentials (1e268eda-b202-46af-9ae8-75a686630fb5)
+-- select * from pgaadauth_create_principal('mi-write-credentials', false, false); -- no DB postgres
+select * from pgaadauth_create_principal_with_oid('mi-write-credentials', '42e57ff3-793f-4fbb-9776-778a12e444d9', 'service', false, false); -- no DB postgres
+GRANT ALL PRIVILEGES ON DATABASE "db-test" TO "mi-write-credentials";
+
+-- mi-read-credentials (ac401625-8f14-497f-b105-3f49ccb4dee1)
+-- select * from pgaadauth_create_principal('mi-read-credentials', false, false); -- no DB postgres
+select * from pgaadauth_create_principal_with_oid('mi-read-credentials', '848d1dab-adb1-4c3f-94cb-d06116e5eaec', 'service', false, false); -- no DB postgres
+GRANT pg_read_all_data TO "mi-read-credentials";
+
+-- ver roles criadas
+select * from pgaadauth_list_principals(false); -- no DB postgres
+
+-- Create the PetStore table
+CREATE TABLE PetStore (
+    PetID SERIAL PRIMARY KEY,
+    PetName VARCHAR(50),
+    PetType VARCHAR(50),
+    Age INT,
+    Price NUMERIC(10, 2)
+);
+
+-- Insert 10 values into the PetStore table
+INSERT INTO PetStore (PetName, PetType, Age, Price) VALUES
+('Bella', 'Dog', 3, 300.00),
+('Max', 'Cat', 2, 150.00),
+('Charlie', 'Dog', 1, 250.00),
+('Luna', 'Rabbit', 1, 50.00),
+('Lucy', 'Bird', 2, 75.00),
+('Cooper', 'Dog', 4, 200.00),
+('Milo', 'Cat', 3, 120.00),
+('Daisy', 'Dog', 2, 220.00),
+('Bailey', 'Rabbit', 2, 60.00),
+('Sadie', 'Bird', 1, 80.00);
+
+-- Select all records to verify the insertion
+SELECT * FROM PetStore;
+
+https://learn.microsoft.com/en-us/azure/app-service/tutorial-java-tomcat-connect-managed-identity-postgresql-database
+
+https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-azure-database?tabs=postgresql-sc%2Cuserassigned-sc%2Cdotnet%2Cdotnet-mysql-mi%2Cdotnet-postgres-mi%2Cwindowsclient
+
