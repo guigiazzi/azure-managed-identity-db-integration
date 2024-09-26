@@ -1,5 +1,0 @@
-{
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "appService.preDeployTask": "package:mongodb-spring",
-    "appService.deploySubpath": "target/mongodb-spring-0.0.1-SNAPSHOT.jar"
-}

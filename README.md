@@ -5,52 +5,33 @@ languages:
 products:
 - azure
 description: "Azure Cosmos DB is a fully managed globally distributed, multi-model database service, transparently replicating your data across any number of Azure regions."
-urlFragment: azure-cosmos-db-mongodb-spring
+urlFragment: azure-cosmos-db-mongodb-java-getting-started
 ---
 
-# Developing a SpringBoot app using Azure Cosmos DB for MongoDB API
-
-Azure Cosmos DB is a fully managed globally distributed, multi-model database service, transparently replicating your data across any number of Azure regions. You can elastically scale throughput and storage, and take advantage of fast, single-digit-millisecond data access using the API of your choice backed by 99.999 SLA. This sample shows you how to use the Azure Cosmos DB for MongoDB API to store and access data from a SpringBoot application. 
-
-## Prerequisites
-
-Before you can run this sample, you must have the following prerequisites:
-
-- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) for this tutorial.
-- An Azure Cosmos DB for MongoDB API account configured with at least two read regions.
+# Developing a Java app using Azure Cosmos DB for MongoDB API
+Azure Cosmos DB is a fully managed globally distributed, multi-model database service, transparently replicating your data across any number of Azure regions. You can elastically scale throughput and storage, and take advantage of fast, single-digit-millisecond data access using the API of your choice backed by 99.999 SLA. This sample shows you how to use the Azure Cosmos DB for MongoDB API to store and access data from a Java application.
 
 ## Running this sample
 
-1. Clone this repository
+* Before you can run this sample, you must have the following prerequisites:
 
-1. Substitute the ``spring.data.mongodb.uri`` in *src\main\resources\application.properties* with your Azure Cosmos DB account's connection string.
+   * An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) for this tutorial.
+   * JDK 1.7+ (Run `apt-get install default-jdk` if you don't have JDK)
+   * Maven (Run `apt-get install maven` if you don't have Maven)
 
-    ```java
-    spring.data.mongodb.uri=mongodb://<account-name>:<account-key>@<account-name>.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@<account-name>@
-    ```
+* Then, clone this repository using `git clone git@github.com:azure-samples/azure-cosmosdb-for-mongodb-api-java-getting-started.git`
 
-    > *If the key string used in the MongoDB URI contains special characters, such as plus signs, use the URL-encoded value of that key. Otherwise, you may face issues trying to connect and see errors pertaining to SASL Authentication failure. This is especially true when working with [Azure Cosmos DB Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) over a local network.*
+* Next, substitute the endpoint and authorization key in Program.java with your Cosmos DB account's values. 
 
-1. Create a new database in your Azure Cosmos DB account.
+* From a command prompt or shell, run `mvn package` to compile and resolve dependencies.
 
-1. Substitute the ``spring.data.mongodb.database`` in *src\main\resources\application.properties* with the name of the database in your Azure Cosmos DB account.
-
-    ```java
-    spring.data.mongodb.database=<database-name>
-    ```
-
-1. Run your application:
-
-    ```bash
-    mvn spring-boot:run
-    ```
+* From a command prompt or shell, run `mvn exec:java -D exec.mainClass=GetStarted.Program` to run the application.
 
 ## About the code
-
-The code included in this sample is intended to illustrate using Azure Cosmos DB for MongoDB API from SpringBoot application. It is a port of the sample from [SpringBoot Getting Started](https://github.com/spring-guides/gs-accessing-data-mongodb) article. It also uses code from [this tutorial](https://falkenfighter.wordpress.com/2015/10/13/multiple-databases-with-spring-boot-mongodb-repositories/) to configure read preference for different repositories.
+The code included in this sample is intended to get you quickly started with a Java application that connects to Azure Cosmos DB for MongoDB API.
 
 ## More information
 
 - [Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/introduction)
-- [Azure Cosmos DB : MongoDB API](https://docs.microsoft.com/azure/cosmos-db/mongodb-introduction)
-- [SpringBoot MongoDB: Getting Started](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#data.nosql.mongodb)
+- [Azure Cosmos DB for MongoDB API](https://docs.microsoft.com/en-us/azure/cosmos-db/mongodb-introduction)
+- [MongoDB Java driver](https://docs.mongodb.com/ecosystem/drivers/java/)
